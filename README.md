@@ -17,6 +17,8 @@ e.g. {{ loggedInUser.emailAddress }}
 
 if you want to bind a UITextField in Interface Builder select the field, open the Identitiy Inspector then add a User Defined Runtime Attribute like below:
 
+-------------------------------------------------
 | Key Path | Type   | Value                     |
 -------------------------------------------------
 | model    | String | loggedInUser.emailAddress |
+-------------------------------------------------
