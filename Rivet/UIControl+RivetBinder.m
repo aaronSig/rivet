@@ -73,6 +73,10 @@ static char const * const RivetScopeKey = "RivetScope";
 }
 
 -(void) attachScope:(id) scope {
+    if(!self.model){
+        return;
+    }
+    
     [self addTarget:self action:@selector(flushUpToModel) forControlEvents:UIControlEventValueChanged];
     [self ensureModelPathExists:scope];
     [scope watchKeyPath:self.model task:^(id object, NSDictionary *change) {
