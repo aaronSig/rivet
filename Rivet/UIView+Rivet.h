@@ -20,5 +20,6 @@
 -(BOOL) hasTemplate;
 -(NSString *) keyPathFromTemplate;
 -(NSString *) compileTemplate:(NSString*) template toStringWithScope:(id) scope error:(NSError **)error;
+-(void) changeSeenOnKeyPath:(NSString *) keyPath object:(id) object change:(NSDictionary *) change;
 
 @end

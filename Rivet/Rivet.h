@@ -7,6 +7,7 @@
 //
 
 #import "Rivetable.h"
+#import "NSObject+BlockObservation.h"
 #import "UIView+Rivet.h"
 #import "UIViewController+Rivet.h"
 #import "UILabel+RivetBinder.h"

@@ -12,6 +12,7 @@
 #import "UIView+Rivet.h"
 #import <objc/runtime.h>
 #import "RVMutableDictionary.h"
+#import "NSObject+BlockObservation.h"
 
 static char const * const RivetModelKey = "RivetModel";
 static char const * const RivetScopeKey = "RivetScope";
@@ -74,7 +75,9 @@ static char const * const RivetScopeKey = "RivetScope";
 -(void) attachScope:(id) scope {
     [self addTarget:self action:@selector(flushUpToModel) forControlEvents:UIControlEventValueChanged];
     [self ensureModelPathExists:scope];
-    [scope addObserver:self forKeyPath:self.model options:NSKeyValueObservingOptionNew context:nil];
+    [scope watchKeyPath:self.model task:^(id object, NSDictionary *change) {
+        [super changeSeenOnKeyPath:self.model object:object change:change];
+    }];
     [super attachScope:scope];
 }
 

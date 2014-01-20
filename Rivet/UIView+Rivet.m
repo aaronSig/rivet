@@ -9,6 +9,7 @@
 #import "UIView+Rivet.h"
 #import <objc/runtime.h>
 #import "GRMustache.h"
+#import "NSObject+BlockObservation.h"
 #import "Rivetable.h"
 
 static char const * const RivetTemplateKey = "RivetTemplate";
@@ -56,6 +57,7 @@ static char const * const RivetScopeKey = "RivetScope";
 }
 
 -(NSString *) compileTemplate:(NSString*) template toStringWithScope:(id) scope error:(NSError **)error{
+    [GRMustacheConfiguration defaultConfiguration].contentType = GRMustacheContentTypeText;
     NSString *rendered = [GRMustacheTemplate renderObject:scope
                                                fromString:template
                                                     error:error];
@@ -89,31 +91,29 @@ static char const * const RivetScopeKey = "RivetScope";
 
     NSArray *keyPaths = [self keyPathsInTemplate];
     for(NSString *keyPath in keyPaths) {
-        [scope addObserver:self forKeyPath:keyPath options:0 context:nil];
+        [scope watchKeyPath:keyPath task:^(id object, NSDictionary *change) {
+            [self changeSeenOnKeyPath:keyPath object:object change:change];
+        }];
     }
 }
 
--(void) detachScope:(id) scope {    
-    @try {
-        [scope removeObserver:self];
-    }
-    @catch (NSException * __unused exception) {}
-    objc_setAssociatedObject(self, RivetScopeKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-    //Something in the scope has changed. Trigger a recompile of the template.
+//Something in the scope has changed. Trigger a recompile of the template.
+-(void) changeSeenOnKeyPath:(NSString *) keyPath object:(id) object change:(NSDictionary *) change {
     // TODO in the future we can optimise to only change the part of the view that needs changing.
-    if([self conformsToProtocol:@protocol(Rivetable)]){
-        if(![self isFirstResponder]){
-            [(id<Rivetable>)self rivetToScope:object];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if([self conformsToProtocol:@protocol(Rivetable)]){
+            if(![self isFirstResponder]){
+                [(id<Rivetable>)self rivetToScope:object];
+            }
+            return;
         }
-        return;
-    }
-    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    });
+}
+
+-(void) detachScope:(id) scope {
+    //N.B. From what I've read we don't have to remove the observers. GC should handle that.
+    
+    objc_setAssociatedObject(self, RivetScopeKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - helpers

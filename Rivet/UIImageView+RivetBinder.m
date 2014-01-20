@@ -16,7 +16,6 @@
     if(!self.template || ![self keyPathFromTemplate]) {
         return;
     }
-    NSLog(@"%@, %@, %@", self.scope, [self keyPathFromTemplate], [self.scope valueForKey:[self keyPathFromTemplate]]);
     
     NSString *imageLocation = [self.scope valueForKeyPath:[self keyPathFromTemplate]];
     if (imageLocation == nil) {
