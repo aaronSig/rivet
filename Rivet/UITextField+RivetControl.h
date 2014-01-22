@@ -1,5 +1,5 @@
 //
-//  UISlider+RivetBinder.h
+//  UITextField+RivetBinder.h
 //  Rivet
 //
 //  Created by Aaron Signorelli on 18/01/2014.
@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Rivetable.h"
+#import "RivetView.h"
+#import "RivetControl.h"
 
-@interface UISlider (RivetBinder) <Rivetable>
+@interface UITextField (RivetView) <RivetView, RivetControl>
 
 @end

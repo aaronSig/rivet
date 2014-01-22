@@ -12,6 +12,4 @@
 
 @property (nonatomic, retain) id scope;
 
--(void) rivet;
-
 @end

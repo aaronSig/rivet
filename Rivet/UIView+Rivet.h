@@ -7,19 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Binding.h"
 
 @interface UIView (Rivet)
 
-@property(nonatomic, retain) NSString *template;
+@property(nonatomic, retain) NSMutableArray *bindings;
 @property (nonatomic, readonly) id scope;
 
--(NSArray *) rivetableSubviews;
 -(void) attachScope:(id) scope;
 -(void) detachScope:(id) scope;
 -(BOOL) isRivetable;
--(BOOL) hasTemplate;
--(NSString *) keyPathFromTemplate;
--(NSString *) compileTemplate:(NSString*) template toStringWithScope:(id) scope error:(NSError **)error;
--(void) changeSeenOnKeyPath:(NSString *) keyPath object:(id) object change:(NSDictionary *) change;
+-(BOOL) hasBindings;
+
+-(void) addBinding: (Binding *)binding;
+
+-(NSArray *) rivetableSubviews;
+-(void) viewDidUpdate;
 
 @end

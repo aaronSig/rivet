@@ -9,114 +9,96 @@
 #import "UIView+Rivet.h"
 #import <objc/runtime.h>
 #import "GRMustache.h"
+#import "JRSwizzle.h"
 #import "NSObject+BlockObservation.h"
-#import "Rivetable.h"
+#import "Binding.h"
+#import "RivetControl.h"
+#import "RivetView.h"
 
-static char const * const RivetTemplateKey = "RivetTemplate";
+static char const * const RivetBindingsKey = "RivetBindings";
 static char const * const RivetScopeKey = "RivetScope";
 
 @implementation UIView (Rivet)
 
-@dynamic scope, template;
+@dynamic scope, bindings;
+
+-(BOOL) isRivetable {
+    return [self hasBindings];
+}
+
+#pragma mark - Creating bindings after IB load
++(void) load {
+    NSError *err = nil;
+    [self jr_swizzleClassMethod:@selector(awakeFromNib) withClassMethod:@selector(swizzledAwakeFromNib) error:&err];
+    if(err) {
+        NSLog(@"Rivet was unable to swizzle the awakeFromNib method. You will have to create the Rivet bindings manually");
+    }
+}
+
+-(void) swizzledAwakeFromNib {
+    if([self conformsToProtocol:@protocol(RivetView)]){
+        UIView<RivetView> *rivetView = (UIView<RivetView> *) self;
+        [rivetView createRivetBindings];
+    }
+    [self swizzledAwakeFromNib];
+}
 
 #pragma mark - scope
 -(id) scope {
     return objc_getAssociatedObject(self, RivetScopeKey);
 }
 
-#pragma mark - template accessors
--(NSString *) template {
-    NSString *template = objc_getAssociatedObject(self, RivetTemplateKey);
-    if(template) {
-        return template;
+#pragma mark - bindings
+-(NSMutableArray *) bindings {
+    NSMutableArray *bindings = objc_getAssociatedObject(self, RivetBindingsKey);
+    if(!bindings) {
+        bindings = [NSMutableArray array];
+        [self setBindings:bindings];
+        return bindings;
     }
-    
-    //Dirty hack to allow us to set the template in the text field in interface builder
-    if([self respondsToSelector:@selector(text)]) {
-        template = [self performSelector:@selector(text)];
-        if([template length] > 0) {
-            [self setTemplate:template];
-        } else {
-            template = nil;
-        }
-    }
-    
-    return template;
+    return bindings;
 }
 
--(void) setTemplate:(NSString *)template {
-    objc_setAssociatedObject(self, RivetTemplateKey, template, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+-(void) setBindings:(NSMutableArray *)bindings {
+    objc_setAssociatedObject(self, RivetBindingsKey, bindings, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
--(BOOL) isRivetable {
-    return [self template] != nil;
+-(void) addBinding: (Binding *)binding {
+    [[self bindings] addObject:binding];
 }
 
--(BOOL) hasTemplate {
-    return [self template] != nil;
-}
-
--(NSString *) compileTemplate:(NSString*) template toStringWithScope:(id) scope error:(NSError **)error{
-    [GRMustacheConfiguration defaultConfiguration].contentType = GRMustacheContentTypeText;
-    NSString *rendered = [GRMustacheTemplate renderObject:scope
-                                               fromString:template
-                                                    error:error];
-    return rendered;
-}
-
--(NSString *) keyPathFromTemplate {
-    return [[self keyPathsInTemplate] objectAtIndex:0];
-}
-
--(NSArray *) keyPathsInTemplate {
-    if(self.hasTemplate == NO) {
-        return [NSArray array];
-    }
-    NSMutableArray *keyPaths = [[NSMutableArray alloc] init];
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\{\\{.*?\\}\\}" options:0 error:nil];
-    NSArray *matches = [regex matchesInString:self.template
-                                      options:0
-                                        range:NSMakeRange(0, [self.template length])];
-    for (NSTextCheckingResult *match in matches) {
-        NSRange matchRange = [match range];
-        NSString *matchString = [self.template substringWithRange:NSMakeRange(matchRange.location + 2, matchRange.length - 4)];
-        [keyPaths addObject:matchString];
-    }
-    return [NSArray arrayWithArray:keyPaths];
+-(BOOL) hasBindings {
+    return [[self bindings] count];
 }
 
 #pragma mark - listening for scope changes
 -(void) attachScope:(id) scope {
     objc_setAssociatedObject(self, RivetScopeKey, scope, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
-    NSArray *keyPaths = [self keyPathsInTemplate];
-    for(NSString *keyPath in keyPaths) {
-        [scope watchKeyPath:keyPath task:^(id object, NSDictionary *change) {
-            [self changeSeenOnKeyPath:keyPath object:object change:change];
-        }];
+    for(Binding *b in self.bindings) {
+        [b attachModel:scope];
+    }
+    if([self conformsToProtocol:@protocol(RivetControl)]) {
+        [(id<RivetControl>)self startMonitoringChanges];
     }
 }
 
-//Something in the scope has changed. Trigger a recompile of the template.
--(void) changeSeenOnKeyPath:(NSString *) keyPath object:(id) object change:(NSDictionary *) change {
-    // TODO in the future we can optimise to only change the part of the view that needs changing.
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if([self conformsToProtocol:@protocol(Rivetable)]){
-            if(![self isFirstResponder]){
-                [(id<Rivetable>)self rivetToScope:object];
-            }
-            return;
-        }
-    });
-}
-
 -(void) detachScope:(id) scope {
-    //N.B. From what I've read we don't have to remove the observers. GC should handle that.
-    
+    if([self conformsToProtocol:@protocol(RivetControl)]) {
+        [(id<RivetControl>)self stopMonitoringChanges];
+    }
+    for(Binding *b in self.bindings) {
+        [b detachModel];
+    }
     objc_setAssociatedObject(self, RivetScopeKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - helpers
+-(void) viewDidUpdate {
+    for(Binding *b in self.bindings) {
+        [b viewDidUpdate];
+    }
+}
+
 // Returns all the subviews which conform the the Rivetable protocol
 // including those which are subviews of subviews.
 -(NSArray *) rivetableSubviews {
@@ -130,6 +112,5 @@ static char const * const RivetScopeKey = "RivetScope";
     }
     return [NSArray arrayWithArray:rivetableSubviews];
 }
-
 
 @end

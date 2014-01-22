@@ -1,15 +1,14 @@
 //
-//  Rivetable.h
+//  UIControl+RivetBinder.h
 //  Rivet
 //
 //  Created by Aaron Signorelli on 18/01/2014.
 //  Copyright (c) 2014 Five Heads. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "RivetControl.h"
 
-@protocol Rivetable <NSObject>
-
--(void) rivetToScope:(id) scope;
+@interface UIControl (RivetControl) <RivetControl>
 
 @end

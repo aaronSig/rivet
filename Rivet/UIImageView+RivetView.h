@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Rivetable.h"
+#import "RivetView.h"
 
-@interface UIImageView (RivetBinder) <Rivetable>
+@interface UIImageView (RivetView) <RivetView>
 
 @end

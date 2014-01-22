@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		23B6A104188B23AD005B40B3 /* RVMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B6A103188B23AD005B40B3 /* RVMutableDictionary.m */; };
-		23B6A108188B3118005B40B3 /* UIControl+RivetBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B6A107188B3118005B40B3 /* UIControl+RivetBinder.m */; };
-		23B6A10B188B473C005B40B3 /* UISlider+RivetBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B6A10A188B473C005B40B3 /* UISlider+RivetBinder.m */; };
-		23B6A10F188B6719005B40B3 /* UIImageView+RivetBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B6A10E188B6719005B40B3 /* UIImageView+RivetBinder.m */; };
+		23B6A108188B3118005B40B3 /* UIControl+RivetControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B6A107188B3118005B40B3 /* UIControl+RivetControl.m */; };
+		23B6A10B188B473C005B40B3 /* UISlider+RivetControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B6A10A188B473C005B40B3 /* UISlider+RivetControl.m */; };
+		23B6A10F188B6719005B40B3 /* UIImageView+RivetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B6A10E188B6719005B40B3 /* UIImageView+RivetView.m */; };
 		23B6A11D188C7EA3005B40B3 /* NSObject+BlockObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B6A11C188C7EA3005B40B3 /* NSObject+BlockObservation.m */; };
 		23C9D3FC188AD428003686BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C9D3FB188AD428003686BC /* Foundation.framework */; };
 		23C9D401188AD428003686BC /* Rivet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23C9D400188AD428003686BC /* Rivet.h */; };
@@ -20,10 +20,13 @@
 		23C9D410188AD428003686BC /* libRivet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C9D3F8188AD428003686BC /* libRivet.a */; };
 		23C9D416188AD428003686BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23C9D414188AD428003686BC /* InfoPlist.strings */; };
 		23C9D418188AD428003686BC /* RivetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9D417188AD428003686BC /* RivetTests.m */; };
-		23C9D42A188AD43C003686BC /* UILabel+RivetBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9D427188AD43C003686BC /* UILabel+RivetBinder.m */; };
+		23C9D42A188AD43C003686BC /* UILabel+RivetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9D427188AD43C003686BC /* UILabel+RivetView.m */; };
 		23C9D431188ADAEF003686BC /* UIViewController+Rivet.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9D430188ADAEF003686BC /* UIViewController+Rivet.m */; };
 		23C9D437188AF072003686BC /* UIView+Rivet.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9D436188AF072003686BC /* UIView+Rivet.m */; };
-		23C9D43E188B0742003686BC /* UITextField+RivetBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9D43D188B0742003686BC /* UITextField+RivetBinder.m */; };
+		23C9D43E188B0742003686BC /* UITextField+RivetControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9D43D188B0742003686BC /* UITextField+RivetControl.m */; };
+		23DA9DAC188F1A8A00691638 /* Binding.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DA9DAB188F1A8A00691638 /* Binding.m */; };
+		23DA9DB6188F4DC600691638 /* UIView+template.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DA9DB5188F4DC600691638 /* UIView+template.m */; };
+		23DA9DB9188F570000691638 /* UIView+HideAndShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DA9DB8188F570000691638 /* UIView+HideAndShow.m */; };
 		512E93BC34934B6489C9E479 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3277F2CAEFD6429C8ABCA61D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -53,12 +56,12 @@
 /* Begin PBXFileReference section */
 		23B6A102188B23AD005B40B3 /* RVMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVMutableDictionary.h; sourceTree = "<group>"; };
 		23B6A103188B23AD005B40B3 /* RVMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVMutableDictionary.m; sourceTree = "<group>"; };
-		23B6A106188B3118005B40B3 /* UIControl+RivetBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+RivetBinder.h"; sourceTree = "<group>"; };
-		23B6A107188B3118005B40B3 /* UIControl+RivetBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+RivetBinder.m"; sourceTree = "<group>"; };
-		23B6A109188B473C005B40B3 /* UISlider+RivetBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISlider+RivetBinder.h"; sourceTree = "<group>"; };
-		23B6A10A188B473C005B40B3 /* UISlider+RivetBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISlider+RivetBinder.m"; sourceTree = "<group>"; };
-		23B6A10D188B6719005B40B3 /* UIImageView+RivetBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RivetBinder.h"; sourceTree = "<group>"; };
-		23B6A10E188B6719005B40B3 /* UIImageView+RivetBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RivetBinder.m"; sourceTree = "<group>"; };
+		23B6A106188B3118005B40B3 /* UIControl+RivetControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+RivetControl.h"; sourceTree = "<group>"; };
+		23B6A107188B3118005B40B3 /* UIControl+RivetControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+RivetControl.m"; sourceTree = "<group>"; };
+		23B6A109188B473C005B40B3 /* UISlider+RivetControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISlider+RivetControl.h"; sourceTree = "<group>"; };
+		23B6A10A188B473C005B40B3 /* UISlider+RivetControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISlider+RivetControl.m"; sourceTree = "<group>"; };
+		23B6A10D188B6719005B40B3 /* UIImageView+RivetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RivetView.h"; sourceTree = "<group>"; };
+		23B6A10E188B6719005B40B3 /* UIImageView+RivetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RivetView.m"; sourceTree = "<group>"; };
 		23B6A11B188C7EA3005B40B3 /* NSObject+BlockObservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BlockObservation.h"; sourceTree = "<group>"; };
 		23B6A11C188C7EA3005B40B3 /* NSObject+BlockObservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BlockObservation.m"; sourceTree = "<group>"; };
 		23C9D3F8188AD428003686BC /* libRivet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRivet.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,15 +74,23 @@
 		23C9D413188AD428003686BC /* RivetTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RivetTests-Info.plist"; sourceTree = "<group>"; };
 		23C9D415188AD428003686BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		23C9D417188AD428003686BC /* RivetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RivetTests.m; sourceTree = "<group>"; };
-		23C9D426188AD43C003686BC /* UILabel+RivetBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+RivetBinder.h"; sourceTree = "<group>"; };
-		23C9D427188AD43C003686BC /* UILabel+RivetBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+RivetBinder.m"; sourceTree = "<group>"; };
+		23C9D426188AD43C003686BC /* UILabel+RivetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+RivetView.h"; sourceTree = "<group>"; };
+		23C9D427188AD43C003686BC /* UILabel+RivetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+RivetView.m"; sourceTree = "<group>"; };
 		23C9D42F188ADAEF003686BC /* UIViewController+Rivet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Rivet.h"; sourceTree = "<group>"; };
 		23C9D430188ADAEF003686BC /* UIViewController+Rivet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Rivet.m"; sourceTree = "<group>"; };
 		23C9D435188AF072003686BC /* UIView+Rivet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Rivet.h"; sourceTree = "<group>"; };
 		23C9D436188AF072003686BC /* UIView+Rivet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Rivet.m"; sourceTree = "<group>"; };
-		23C9D43B188AFFDB003686BC /* Rivetable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rivetable.h; sourceTree = "<group>"; };
-		23C9D43C188B0742003686BC /* UITextField+RivetBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RivetBinder.h"; sourceTree = "<group>"; };
-		23C9D43D188B0742003686BC /* UITextField+RivetBinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RivetBinder.m"; sourceTree = "<group>"; };
+		23C9D43C188B0742003686BC /* UITextField+RivetControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RivetControl.h"; sourceTree = "<group>"; };
+		23C9D43D188B0742003686BC /* UITextField+RivetControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RivetControl.m"; sourceTree = "<group>"; };
+		23DA9DAA188F1A8A00691638 /* Binding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Binding.h; sourceTree = "<group>"; };
+		23DA9DAB188F1A8A00691638 /* Binding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Binding.m; sourceTree = "<group>"; };
+		23DA9DAD188F33C500691638 /* RivetControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RivetControl.h; sourceTree = "<group>"; };
+		23DA9DAF188F3B5B00691638 /* RivetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RivetView.h; sourceTree = "<group>"; };
+		23DA9DB3188F480E00691638 /* RivetElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RivetElement.h; sourceTree = "<group>"; };
+		23DA9DB4188F4DC600691638 /* UIView+template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+template.h"; sourceTree = "<group>"; };
+		23DA9DB5188F4DC600691638 /* UIView+template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+template.m"; sourceTree = "<group>"; };
+		23DA9DB7188F570000691638 /* UIView+HideAndShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HideAndShow.h"; sourceTree = "<group>"; };
+		23DA9DB8188F570000691638 /* UIView+HideAndShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HideAndShow.m"; sourceTree = "<group>"; };
 		3277F2CAEFD6429C8ABCA61D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A61C987DB6C8451B8F11B415 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,12 +131,13 @@
 		23B6A10C188B4747005B40B3 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				23B6A106188B3118005B40B3 /* UIControl+RivetBinder.h */,
-				23B6A107188B3118005B40B3 /* UIControl+RivetBinder.m */,
-				23B6A109188B473C005B40B3 /* UISlider+RivetBinder.h */,
-				23B6A10A188B473C005B40B3 /* UISlider+RivetBinder.m */,
-				23C9D43C188B0742003686BC /* UITextField+RivetBinder.h */,
-				23C9D43D188B0742003686BC /* UITextField+RivetBinder.m */,
+				23DA9DAD188F33C500691638 /* RivetControl.h */,
+				23B6A106188B3118005B40B3 /* UIControl+RivetControl.h */,
+				23B6A107188B3118005B40B3 /* UIControl+RivetControl.m */,
+				23B6A109188B473C005B40B3 /* UISlider+RivetControl.h */,
+				23B6A10A188B473C005B40B3 /* UISlider+RivetControl.m */,
+				23C9D43C188B0742003686BC /* UITextField+RivetControl.h */,
+				23C9D43D188B0742003686BC /* UITextField+RivetControl.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -172,14 +184,15 @@
 			isa = PBXGroup;
 			children = (
 				23C9D400188AD428003686BC /* Rivet.h */,
-				23C9D43B188AFFDB003686BC /* Rivetable.h */,
+				23DA9DAA188F1A8A00691638 /* Binding.h */,
+				23DA9DAB188F1A8A00691638 /* Binding.m */,
 				23C9D435188AF072003686BC /* UIView+Rivet.h */,
 				23C9D436188AF072003686BC /* UIView+Rivet.m */,
 				23C9D42F188ADAEF003686BC /* UIViewController+Rivet.h */,
 				23C9D430188ADAEF003686BC /* UIViewController+Rivet.m */,
 				23B6A11B188C7EA3005B40B3 /* NSObject+BlockObservation.h */,
 				23B6A11C188C7EA3005B40B3 /* NSObject+BlockObservation.m */,
-				23C9D42B188AD447003686BC /* Binders */,
+				23C9D42B188AD447003686BC /* UI Elements */,
 				23B6A105188B23B2005B40B3 /* KVObjects */,
 				23B6A121188CC1C2005B40B3 /* filters */,
 				23C9D3FE188AD428003686BC /* Supporting Files */,
@@ -213,16 +226,30 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		23C9D42B188AD447003686BC /* Binders */ = {
+		23C9D42B188AD447003686BC /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
+				23DA9DB3188F480E00691638 /* RivetElement.h */,
+				23DA9DB4188F4DC600691638 /* UIView+template.h */,
+				23DA9DB5188F4DC600691638 /* UIView+template.m */,
 				23B6A10C188B4747005B40B3 /* Controls */,
-				23C9D426188AD43C003686BC /* UILabel+RivetBinder.h */,
-				23C9D427188AD43C003686BC /* UILabel+RivetBinder.m */,
-				23B6A10D188B6719005B40B3 /* UIImageView+RivetBinder.h */,
-				23B6A10E188B6719005B40B3 /* UIImageView+RivetBinder.m */,
+				23DA9DAE188F3B0400691638 /* views */,
 			);
-			name = Binders;
+			name = "UI Elements";
+			sourceTree = "<group>";
+		};
+		23DA9DAE188F3B0400691638 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				23DA9DAF188F3B5B00691638 /* RivetView.h */,
+				23DA9DB7188F570000691638 /* UIView+HideAndShow.h */,
+				23DA9DB8188F570000691638 /* UIView+HideAndShow.m */,
+				23C9D426188AD43C003686BC /* UILabel+RivetView.h */,
+				23C9D427188AD43C003686BC /* UILabel+RivetView.m */,
+				23B6A10D188B6719005B40B3 /* UIImageView+RivetView.h */,
+				23B6A10E188B6719005B40B3 /* UIImageView+RivetView.m */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,14 +369,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				23B6A104188B23AD005B40B3 /* RVMutableDictionary.m in Sources */,
-				23B6A10F188B6719005B40B3 /* UIImageView+RivetBinder.m in Sources */,
+				23B6A10F188B6719005B40B3 /* UIImageView+RivetView.m in Sources */,
 				23C9D431188ADAEF003686BC /* UIViewController+Rivet.m in Sources */,
-				23C9D42A188AD43C003686BC /* UILabel+RivetBinder.m in Sources */,
-				23B6A10B188B473C005B40B3 /* UISlider+RivetBinder.m in Sources */,
+				23DA9DAC188F1A8A00691638 /* Binding.m in Sources */,
+				23C9D42A188AD43C003686BC /* UILabel+RivetView.m in Sources */,
+				23DA9DB9188F570000691638 /* UIView+HideAndShow.m in Sources */,
+				23B6A10B188B473C005B40B3 /* UISlider+RivetControl.m in Sources */,
 				23C9D437188AF072003686BC /* UIView+Rivet.m in Sources */,
-				23B6A108188B3118005B40B3 /* UIControl+RivetBinder.m in Sources */,
+				23DA9DB6188F4DC600691638 /* UIView+template.m in Sources */,
+				23B6A108188B3118005B40B3 /* UIControl+RivetControl.m in Sources */,
 				23B6A11D188C7EA3005B40B3 /* NSObject+BlockObservation.m in Sources */,
-				23C9D43E188B0742003686BC /* UITextField+RivetBinder.m in Sources */,
+				23C9D43E188B0742003686BC /* UITextField+RivetControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

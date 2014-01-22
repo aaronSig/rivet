@@ -1,5 +1,5 @@
 //
-//  UIControl+RivetBinder.h
+//  UISlider+RivetBinder.h
 //  Rivet
 //
 //  Created by Aaron Signorelli on 18/01/2014.
@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RivetControl.h"
+#import "RivetView.h"
 
-@interface UIControl (RivetBinder)
-
-@property(nonatomic, retain) NSString* model;
-
--(void) ensureModelPathExists:(id) scope;
+@interface UISlider (RivetControl) <RivetControl, RivetView>
 
 @end

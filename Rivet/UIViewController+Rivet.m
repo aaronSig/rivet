@@ -8,7 +8,6 @@
 
 #import "UIViewController+Rivet.h"
 #import "UIView+Rivet.h"
-#import "Rivetable.h"
 #import "RVMutableDictionary.h"
 #import <objc/runtime.h>
 
@@ -44,7 +43,6 @@ static char const * const RivetScopeKey = "RivetScope";
     for(UIView *rivetableView in rivetableSubviews) {
         [rivetableView attachScope:scope];
     }
-    [self rivet];
 }
 
 // Responsible for ensuring that the subviews no longer contain any references to a scope
@@ -52,15 +50,6 @@ static char const * const RivetScopeKey = "RivetScope";
     NSArray *rivetableSubviews = [self.view rivetableSubviews];
     for(UIView *rivetableView in rivetableSubviews) {
         [rivetableView detachScope:scope];
-    }
-}
-
-// Searches through all the view controler's view's subviews looking for rivetable views.
-// Binds the views to the scope, replacing any templates and setting values
--(void) rivet {
-    NSArray *rivetableSubviews = [self.view rivetableSubviews];
-    for(UIView<Rivetable> *rivetableView in rivetableSubviews) {
-        [rivetableView rivetToScope:self.scope];
     }
 }
 
