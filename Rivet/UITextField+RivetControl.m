@@ -15,14 +15,20 @@
 @implementation UITextField (RivetControl)
 
 -(void) createRivetBindings {
-    if([[self text] length]){
+    
+    if([[self text] length] || [[self model] length]){
+        NSString *template = self.text;
+        if(![[self model] length]){
+            template = [NSString stringWithFormat:@"{{%@}}", self.model];
+        }
+        
         //Use the text in the label for the template.
         // This binding pushes changes in the model to the TextField
-        Binding *textBinder = [Binding whenTemplate:self.text requiresRenderingUpdateTheViewProperty:@"text"];
+        Binding *textBinder = [Binding whenTemplate:template requiresRenderingUpdateTheViewProperty:@"text"];
         [super addBinding:textBinder];
         
         // This binding pushes changes in the TextField back to the model
-        Binding *inverseTextBinder = [Binding watchModelKeyPath:[[self.text stringByReplacingOccurrencesOfString:@"{{" withString:@""] stringByReplacingOccurrencesOfString:@"}}" withString:@""]];
+        Binding *inverseTextBinder = [Binding watchModelKeyPath:[[template stringByReplacingOccurrencesOfString:@"{{" withString:@""] stringByReplacingOccurrencesOfString:@"}}" withString:@""]];
         inverseTextBinder.defaultValue = @"";
         [super addBinding:inverseTextBinder];
     }

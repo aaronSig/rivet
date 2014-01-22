@@ -22,4 +22,17 @@ static char const * const RivetTemplateKey = "RivetTemplate";
     objc_setAssociatedObject(self, RivetTemplateKey, template, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+
+static char const * const RiveModelKey = "RivetModel";
+
+@dynamic model;
+
+-(NSString *) model {
+    return objc_getAssociatedObject(self, RiveModelKey);
+}
+
+-(void) setModel:(NSString *) model {
+    objc_setAssociatedObject(self, RiveModelKey, model, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 @end

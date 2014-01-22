@@ -12,5 +12,6 @@
 @interface UIView (template)
 
 @property(nonatomic, retain) NSString *template;
+@property(nonatomic, retain) NSString *model;
 
 @end
