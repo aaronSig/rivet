@@ -11,6 +11,7 @@
 #import "UIView+Rivet.h"
 #import "UIViewController+Rivet.h"
 #import "UILabel+RivetBinder.h"
+#import "UIControl+RivetBinder.h"
 #import "UITextField+RivetBinder.h"
 #import "UISlider+RivetBinder.h"
 #import "UIImageView+RivetBinder.h"

@@ -31,13 +31,13 @@
 
 #pragma mark - handling scope
 -(void) attachScope:(id) scope {
-    [self addTarget:self action:@selector(flushUpToModel) forControlEvents:UIControlEventEditingChanged | UIControlEventEditingDidEndOnExit];
+    [self addTarget:self action:@selector(flushUpToModel) forControlEvents:UIControlEventEditingChanged | UIControlEventEditingDidEndOnExit | UIControlEventEditingDidBegin];
     [self ensureModelPathExists:scope];
     [super attachScope:scope];
 }
 
 -(void) detachScope:(id) scope {
-    [self removeTarget:self action:@selector(flushUpToModel) forControlEvents:UIControlEventEditingChanged | UIControlEventEditingDidEndOnExit];
+    [self removeTarget:self action:@selector(flushUpToModel) forControlEvents:UIControlEventEditingChanged | UIControlEventEditingDidEndOnExit | UIControlEventEditingDidBegin];
     [super detachScope:scope];
 }
 

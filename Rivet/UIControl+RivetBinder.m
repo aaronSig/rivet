@@ -35,6 +35,7 @@ static char const * const RivetScopeKey = "RivetScope";
         model = [self performSelector:@selector(text)];
         [self setModel:[[model stringByReplacingOccurrencesOfString:@"{{" withString:@""] stringByReplacingOccurrencesOfString:@"}}" withString:@""]];
     }
+    
     return model;
 }
 
@@ -78,10 +79,12 @@ static char const * const RivetScopeKey = "RivetScope";
     }
     
     [self addTarget:self action:@selector(flushUpToModel) forControlEvents:UIControlEventValueChanged];
-    [self ensureModelPathExists:scope];
-    [scope watchKeyPath:self.model task:^(id object, NSDictionary *change) {
-        [super changeSeenOnKeyPath:self.model object:object change:change];
-    }];
+    if([[self model] length]){
+        [self ensureModelPathExists:scope];
+        [scope watchKeyPath:self.model task:^(id object, NSDictionary *change) {
+            [super changeSeenOnKeyPath:self.model object:object change:change];
+        }];
+    }
     [super attachScope:scope];
 }
 

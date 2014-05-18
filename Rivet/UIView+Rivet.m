@@ -34,8 +34,9 @@ static char const * const RivetScopeKey = "RivetScope";
     //Dirty hack to allow us to set the template in the text field in interface builder
     if([self respondsToSelector:@selector(text)]) {
         template = [self performSelector:@selector(text)];
-        if([template length] > 0) {
+        if([template length] > 0 && [template rangeOfString:@"{{"].location != NSNotFound && [template rangeOfString:@"}}"].location != NSNotFound) {
             [self setTemplate:template];
+            [self performSelector:@selector(setText:) withObject:@""];
         } else {
             template = nil;
         }

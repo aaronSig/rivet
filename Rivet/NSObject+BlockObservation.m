@@ -61,6 +61,7 @@ static void *AMObserverTrampolineContext = @"AMObserverTrampolineContext";
 - (void)dealloc
 {
     [self cancelObservation];
+    [super dealloc];
 }
 
 @end
